@@ -1,4 +1,3 @@
 # Second Flutter Project
-- Learn how to use stateful Widgets
-- Learn how to use setState function
+- Learned how to use stateful Widget, setState function, Timer Widget
 - Completed on Jan 22nd, 2023
