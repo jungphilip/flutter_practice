@@ -55,6 +55,7 @@ By creating a **factory method**, we can do the work of mapping these class memb
 ## Accessing the object
 
 Step 1. imports
+
 Step 2. load Json Asset
 
     Future<String> _loadAEmployerAsset() aysnc {
