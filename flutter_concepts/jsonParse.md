@@ -68,4 +68,5 @@ Step 3. load the response
       final jsonResponse = json.decode(jsonString); //Decoding raw json String
       Employer employer = Employer.fromEmployer(jsonResponse); //deserialize(string -> data) the decoded json response
     }
-  
+
+---
