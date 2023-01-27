@@ -17,7 +17,7 @@ class AuthButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => tapFunc!(),
+      onTap: tapFunc,
       child: FractionallySizedBox(
         //얘의 부모는 현재 column, widthFactor로 부모 사이즈를 기준으로 상대적인 사이즈 지정
         widthFactor: 1,
