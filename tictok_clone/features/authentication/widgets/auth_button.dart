@@ -1,23 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tiktok_clone/features/authentication/email_screen.dart';
 import '../../../constants/sizes.dart';
 
 class AuthButton extends StatelessWidget {
   final String text;
   final FaIcon icon;
-  final void Function()? tapFunc;
-
+  final String? functionName;
   const AuthButton({
     super.key,
     required this.text,
     required this.icon,
-    required this.tapFunc,
+    this.functionName,
   });
+
+  void tapFunc(BuildContext context, String functionName) {
+    if (functionName == 'Email') {
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => const EmailScreen(),
+        ),
+      );
+    } else if (functionName == 'Apple') {
+    } else if (functionName == 'Facebook') {
+    } else if (functionName == 'Google') {}
+  }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: tapFunc,
+      onTap: () => tapFunc(context, functionName!),
       child: FractionallySizedBox(
         //얘의 부모는 현재 column, widthFactor로 부모 사이즈를 기준으로 상대적인 사이즈 지정
         widthFactor: 1,
