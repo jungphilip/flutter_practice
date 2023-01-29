@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:tiktok_clone/features/authentication/email_screen.dart';
 import '../../../constants/sizes.dart';
+import '../username_screen.dart';
 
 class AuthButton extends StatelessWidget {
   final String text;
@@ -18,7 +18,8 @@ class AuthButton extends StatelessWidget {
     if (functionName == 'Email') {
       Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (context) => const EmailScreen(),
+          //
+          builder: (context) => const UsernameScreen(),
         ),
       );
     } else if (functionName == 'Apple') {
@@ -29,7 +30,8 @@ class AuthButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => tapFunc(context, functionName!),
+      onTap: () => tapFunc(context,
+          functionName!), // onTap은 함수를 받아야 하는데 나는 void를 받아놓고 왜 안되지 하고 있었군..
       child: FractionallySizedBox(
         //얘의 부모는 현재 column, widthFactor로 부모 사이즈를 기준으로 상대적인 사이즈 지정
         widthFactor: 1,
