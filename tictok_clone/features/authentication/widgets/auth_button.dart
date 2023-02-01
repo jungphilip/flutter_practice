@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tiktok_clone/features/authentication/login_form_screen.dart';
 import '../../../constants/sizes.dart';
 import '../username_screen.dart';
 
@@ -24,7 +25,16 @@ class AuthButton extends StatelessWidget {
       );
     } else if (functionName == 'Apple') {
     } else if (functionName == 'Facebook') {
-    } else if (functionName == 'Google') {}
+    } else if (functionName == 'Google') {
+    } else if (functionName == 'LoginForm') {
+      {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => const LoginFormScreen(),
+          ),
+        );
+      }
+    }
   }
 
   @override

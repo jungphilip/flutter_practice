@@ -38,6 +38,7 @@ class LoginScreen extends StatelessWidget {
               ),
               Gaps.v40,
               AuthButton(
+                  functionName: 'LoginForm',
                   icon: FaIcon(FontAwesomeIcons.user),
                   text: "Use email & password"),
               Gaps.v16,
