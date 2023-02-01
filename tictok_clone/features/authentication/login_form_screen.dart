@@ -13,6 +13,8 @@ class LoginFormScreen extends StatefulWidget {
 class _LoginFormScreenState extends State<LoginFormScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>(); // 얘는 뭐하는거지;;
 
+  Map<String, String> formData = {};
+
   void _onSubmitTap() {
     if (_formKey.currentState != null) {
       if (_formKey.currentState!.validate()) {
@@ -41,6 +43,11 @@ class _LoginFormScreenState extends State<LoginFormScreen> {
                 validator: (value) {
                   return null;
                 },
+                onSaved: (newValue) {
+                  if (newValue != null) {
+                    formData['email'] = newValue;
+                  }
+                },
               ),
               Gaps.v16,
               TextFormField(
@@ -49,6 +56,11 @@ class _LoginFormScreenState extends State<LoginFormScreen> {
                 ),
                 validator: (value) {
                   return null;
+                },
+                onSaved: (newValue) {
+                  if (newValue != null) {
+                    formData['password'] = newValue;
+                  }
                 },
               ),
               Gaps.v28,
