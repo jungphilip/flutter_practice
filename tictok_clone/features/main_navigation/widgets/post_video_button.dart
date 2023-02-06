@@ -9,7 +9,7 @@ class PostVideoButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedOpacity(
-      opacity: isSelected ? 0.6 : 1,
+      opacity: isSelected ? 1 : 0.6,
       duration: const Duration(milliseconds: 300),
       child: Stack(
         clipBehavior: Clip.none,

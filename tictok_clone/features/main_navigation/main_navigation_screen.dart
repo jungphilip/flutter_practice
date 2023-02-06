@@ -42,6 +42,22 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
     });
   }
 
+  void _onLongPressedUp() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => Scaffold(
+          appBar: AppBar(
+            title: const Text("record video"),
+          ),
+        ),
+        fullscreenDialog: true,
+      ),
+    );
+    setState(() {
+      _isSelected = !_isSelected;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -90,7 +106,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
               GestureDetector(
                 onLongPress: _onLongPressed,
                 onTap: _onPostVideoButtonTap,
-                onLongPressUp: _onPostVideoButtonTap,
+                onLongPressUp: _onLongPressedUp,
                 child: PostVideoButton(
                   isSelected: _isSelected,
                 ),
