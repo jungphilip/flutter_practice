@@ -1,19 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:u_and_i/screen/anniversary_screen.dart';
-import 'package:u_and_i/screen/home_screen.dart';
+import 'package:u_and_i/screen/record_screen.dart';
 
-class SplashScreen extends StatelessWidget {
+class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
-  void _onRecordTap(BuildContext context) {
-    Navigator.of(context).push(
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  int dDay = 1;
+  DateTime selectedDate = DateTime.now();
+  void _onRecordTap() async {
+    final result = await Navigator.of(context).push<DateTime>(
       MaterialPageRoute(
-        builder: (context) => const HomeScreen(),
+        builder: (context) => HomeScreen(
+          selectedDate: selectedDate,
+        ),
       ),
     );
+
+    if (result != null) {
+      setState(() {
+        dDay = DateTime.now().difference(result).inDays + 1;
+        selectedDate = result;
+      });
+    }
   }
 
-  void _onAnniversaryTap(BuildContext context) {
+  void _onAnniversaryTap() async {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => const AnniversaryScreen(),
@@ -30,40 +46,60 @@ class SplashScreen extends StatelessWidget {
           width: MediaQuery.of(context).size.width,
           child: Column(
             children: [
-              const SizedBox(
-                height: 300,
-              ),
-              const Text(
-                'U&I',
-                style: TextStyle(
-                  fontFamily: 'parisieene',
-                  fontSize: 80,
-                  color: Colors.white,
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    const Text(
+                      'U&I',
+                      style: TextStyle(
+                        fontFamily: 'parisieene',
+                        fontSize: 80,
+                        color: Colors.white,
+                      ),
+                    ),
+                    Column(
+                      children: [
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.pink[200],
+                          ),
+                          onPressed: () {
+                            _onRecordTap();
+                          },
+                          child: const Text(
+                            '기록하기',
+                          ),
+                        ),
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.pink[200],
+                          ),
+                          onPressed: () {
+                            _onAnniversaryTap();
+                          },
+                          child: const Text(
+                            '기념일 확인하기',
+                          ),
+                        ),
+                      ],
+                    ),
+                    Text(
+                      "D+$dDay",
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontFamily: 'sunflower',
+                        fontSize: 50,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
                 ),
               ),
-              const SizedBox(
-                height: 300,
-              ),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.pink[200],
-                ),
-                onPressed: () {
-                  _onRecordTap(context);
-                },
-                child: const Text(
-                  '기록하기',
-                ),
-              ),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.pink[200],
-                ),
-                onPressed: () {
-                  _onAnniversaryTap(context);
-                },
-                child: const Text(
-                  '기념일 확인하기',
+              Expanded(
+                child: Image.asset(
+                  'asset/img/middle_image.png',
+                  width: 200,
                 ),
               ),
             ],
