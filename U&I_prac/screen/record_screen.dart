@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'anniversary_screen.dart';
+
 class HomeScreen extends StatefulWidget {
   final DateTime selectedDate;
   const HomeScreen({
@@ -17,8 +19,21 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     _selectedDate = widget.selectedDate;
+  }
+
+  void _onSaveTap() {
+    Navigator.of(context).pop(_selectedDate);
+  }
+
+  void _onAnniversaryTap() async {
+    await Navigator.of(context).push<DateTime>(
+      MaterialPageRoute(
+        builder: (context) => AnniversaryScreen(
+          selectedDate: _selectedDate,
+        ),
+      ),
+    );
   }
 
   @override
@@ -33,7 +48,28 @@ class _HomeScreenState extends State<HomeScreen> {
               onPressed: onHeartPressed,
             ),
             _BottomPart(
+              onTap: _onSaveTap,
               selectedDate: _selectedDate,
+            ),
+          ],
+        ),
+      ),
+      bottomNavigationBar: BottomAppBar(
+        color: Colors.pink[200],
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.edit_calendar),
+            ),
+            IconButton(
+              onPressed: _onSaveTap,
+              icon: const Icon(Icons.home),
+            ),
+            IconButton(
+              onPressed: _onAnniversaryTap,
+              icon: const Icon(Icons.checklist_rtl),
             ),
           ],
         ),
@@ -70,15 +106,13 @@ class _HomeScreenState extends State<HomeScreen> {
 
 class _BottomPart extends StatelessWidget {
   DateTime selectedDate;
+  void Function()? onTap;
 
   _BottomPart({
     required this.selectedDate,
+    required this.onTap,
     Key? key,
   }) : super(key: key);
-
-  void _onSaveTap(BuildContext context) {
-    Navigator.of(context).pop(selectedDate);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -86,13 +120,16 @@ class _BottomPart extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.pink[200],
-            ),
-            onPressed: () => _onSaveTap(context),
-            child: const Text(
-              '저장하기',
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 30.0),
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.pink[200],
+              ),
+              onPressed: onTap,
+              child: const Text(
+                '저장하기',
+              ),
             ),
           ),
         ],
