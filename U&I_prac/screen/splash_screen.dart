@@ -4,7 +4,8 @@ import 'package:u_and_i/screen/record_screen.dart';
 import 'package:u_and_i/widgets/bottom_navigation_bar.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
+  DateTime? result;
+  SplashScreen({this.result, super.key});
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
@@ -71,14 +72,27 @@ class _SplashScreenState extends State<SplashScreen> {
                       color: Colors.white,
                     ),
                   ),
-                  Text(
-                    "D+$dDay",
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontFamily: 'sunflower',
-                      fontSize: 50,
-                      fontWeight: FontWeight.w500,
-                    ),
+                  Column(
+                    children: [
+                      const Text(
+                        '우리가 함께한지',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontFamily: 'sunflower',
+                          fontSize: 30,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      Text(
+                        "$dDay일",
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontFamily: 'sunflower',
+                          fontSize: 50,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
